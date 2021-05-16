@@ -16,7 +16,7 @@ class TestDueDateCalculator(unittest.TestCase):
         
     def test_get_day(self):
         day = due_date_calc.get_day(self.input)
-        self.assertEqual(day, 'THURSDAY')
+        self.assertEqual(day, 'Thursday')
 
     def test_am_pm_exception(self):
         input = 'Tuesday 2:14 fz'
@@ -59,7 +59,7 @@ class TestDueDateCalculator(unittest.TestCase):
         self.assertEqual(turnaround_2, (2, 2))
 
     def test_calculate_due_date_turnaround_at_current_day(self):
-        due_date = due_date_calc.calculate_due_date('Thursday 2:00 PM', 2)
+        due_date = due_date_calc.calculate_due_date('thursday 2:00 PM', 2)
         self.assertEqual(due_date, 'Thursday 4:00 PM')   
 
 

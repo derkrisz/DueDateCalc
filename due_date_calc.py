@@ -1,4 +1,4 @@
-days = ('MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY')
+days = ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
 hours = (1, 2, 3, 4, 5, 9, 10, 11, 12)
 
 def get_am_pm(input):
@@ -15,17 +15,20 @@ def get_time(input):
         raise ValueError('Hours should fall between working hours: 9 AM to 5 PM')
     if (0 <= time[1] > 59):
         raise ValueError('Minutes should be between 0 and 60')
+    if time[1] == 0:
+        time.append(0)
     return time
 
 def get_day(input):
     split_input = input.split()
-    day_upper = split_input[0].upper()
-    if (day_upper not in days):
+    day = split_input[0]
+    capitalized = day.capitalize()
+    if (capitalized not in days):
         raise ValueError("Day should be a day of the week e.g. 'Monday', 'Tuesday'")
-    return day_upper
+    return capitalized
 
 def calculate_turnaround_time(turnaround_time):
-    return turnaround_time / 12, turnaround_time % 12
+    return int(turnaround_time / 12), turnaround_time % 12
 
 def calculate_due_date(date, turnaround_time):
     
@@ -37,7 +40,9 @@ def calculate_due_date(date, turnaround_time):
 
     turnaround = calculate_turnaround_time(turnaround_time)
 
-    due_date_day = time_of_day[1] + turnaround[1]
+    due_date_time = time[0] + turnaround[1]
+
+    return f'{day} {due_date_time}:{time[1]}{time[2]} {time_of_day}'
 
     
 
